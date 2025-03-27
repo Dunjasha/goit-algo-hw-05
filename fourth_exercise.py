@@ -26,8 +26,6 @@ def add_contact(args, contacts): # Ця функція додає контакт
 
 @input_error
 def change_contact(args, contacts): # Ця функція змінює номер телефону у словнику.
-    if len(args) != 2:
-        raise ValueError
     name, phone = args
     if name in contacts:
         contacts[name] = phone
@@ -37,8 +35,6 @@ def change_contact(args, contacts): # Ця функція змінює номе�
 
 @input_error
 def show_phone(args, contacts): # Ця функція виводить номер телефону.
-    if len(args) != 1:
-        raise ValueError
     name = args[0]
     return contacts[name]
 
@@ -54,9 +50,13 @@ def main():
     contacts = {}
     print("Welcome to the assistant bot!")
     while True:
-        user_input = input("Enter a command: ")
+        user_input = input("Enter a command: ").strip()
+        if not user_input:
+            print("Please enter a valid command.")
+            continue
+        
         command, args = parse_input(user_input)
-
+        
         if command in ["close", "exit"]:
             print("Good bye!")
             break
