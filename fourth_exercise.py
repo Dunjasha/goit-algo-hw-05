@@ -19,8 +19,6 @@ def parse_input(user_input): # Ця функція розбирає введен
 
 @input_error
 def add_contact(args, contacts): # Ця функція додає контакт у словник contacts.
-    if len(args) != 2: 
-        raise ValueError
     name, phone = args
     contacts[name] = phone
     return "Contact added."
